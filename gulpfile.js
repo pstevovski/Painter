@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const babel = require('gulp-babel');
 const minify = require('gulp-babel-minify');
+const concat = require('gulp-concat');
 
 sass.compiler = require('node-sass');
 
@@ -23,6 +24,7 @@ gulp.task('compileJS', ()=>{
                     keepClassName: true
                 }
             }))
+            // .pipe(concat('main-bundled.js'))
             .pipe(gulp.dest('./build/js/'));
 })
 
