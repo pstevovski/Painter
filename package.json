@@ -1,8 +1,8 @@
 {
   "name": "drawgraffiti",
   "version": "1.0.0",
-  "description": "Draw graffiti or anything you want.",
-  "main": "./src/js/index.js",
+  "description": "Draw anything you'd like",
+  "main": "./build/js/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,9 +12,7 @@
   },
   "keywords": [
     "draw",
-    "graffiti",
-    "paint",
-    "canvas"
+    "things"
   ],
   "author": "Petar Stevovski",
   "license": "ISC",
@@ -22,16 +20,13 @@
     "url": "https://github.com/pecko95/DrawGraffiti/issues"
   },
   "homepage": "https://github.com/pecko95/DrawGraffiti#readme",
-  "dependencies": {
-    "gulp": "^4.0.0"
-  },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "gulp-babel": "^8.0.0",
+    "gulp": "^4.0.0",
     "gulp-babel-minify": "^0.5.0",
-    "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.0.2",
     "node-sass": "^4.11.0"
+  },
+  "dependencies": {
+    "gulp-uglifycss": "^1.1.0"
   }
 }

@@ -1,35 +1,34 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const babel = require('gulp-babel');
-const minify = require('gulp-babel-minify');
-const concat = require('gulp-concat');
+const uglifyCSS = require('gulp-uglifycss');
+const compress = require('gulp-babel-minify');
 
 sass.compiler = require('node-sass');
 
-// Compile SCSS to CSS
-gulp.task('compileSCSS', ()=>{
+// Compile SCSS to CSS and minify it
+gulp.task('compileSCSS', () => {
     return gulp.src('./src/scss/*.scss')
-                .pipe(sass().on('error', sass.logError))
-                .pipe(gulp.dest('./build/css/'))
-});
-
-// Compile ES6+ to ES5 code
-gulp.task('compileJS', ()=>{
-    return gulp.src('./src/js/*.js')
-            .pipe(babel({
-                presets: ['@babel/env']
+            .pipe(sass().on('error', sass.logError))
+            .pipe(uglifyCSS({
+                "maxLineLen": 80,
+                "uglyComments": true
             }))
-            .pipe(minify({
+            .pipe(gulp.dest('./build/css/'))
+})
+
+// Uglify (minify) JS
+gulp.task('minifyJS', () => {
+    return gulp.src('./src/js/app.js')
+            .pipe(compress({
                 mangle: {
                     keepClassName: true
                 }
             }))
-            // .pipe(concat('main-bundled.js'))
-            .pipe(gulp.dest('./build/js/'));
+            .pipe(gulp.dest('./build/js/'))
 })
 
-// Watch - auto re-compile on save
+// Watch and autosave/run tasks
 gulp.task('watch', () => {
-    gulp.watch(['./src/js/**/*.js'], gulp.series('compileJS'));
-    gulp.watch(['./src/scss/**/*.scss'], gulp.series('compileSCSS'));
+    gulp.watch(['./src/js/*.js'], gulp.series('minifyJS'));
+    gulp.watch(['./src/scss/*.scss'], gulp.series('compileSCSS'));
 })
