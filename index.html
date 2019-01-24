@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DrawThings</title>
+    <link rel="stylesheet" href="./build/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-menu">
+            <h1>DrawThings</h1>
+            <p>Draw something!</p>
+
+            <div class="buttons-main">
+                <button id="draw">Draw !</button>
+                <button id="about">About</button>
+            </div>
+        </div>
+
+        <!-- Canvas to draw on -->
+        <main id="main">  
+            <div class="controls">
+                <!-- Cap properties -->
+                <div class="cap-props">
+                    <!-- CAP WIDTH -->
+                    <div>
+                        <label>Cap width: </label>
+                        <input type="range" name="capWidth" id="capWidth">
+                    </div>
+                    <!-- CAP TYPE -->
+                    <div>
+                        <label>Cap type: </label>
+                        <div>
+                            <label for="Round">Round:</label>
+                            <input type="checkbox" name="Round" id="capRound">
+                        </div>
+                        <div>
+                            <label for="Square">Square:</label>
+                            <input type="checkbox" name="Square" id="capSquare">
+                        </div>
+                        <div>
+                            <label for="Butt">Butt:</label>
+                            <input type="checkbox" name="Butt" id="capButt">
+                        </div>
+                    </div>
+                    <!-- LINE JOIN TYPE -->
+                    <div>
+                        <p>Line Join type:</p>
+                        <div>
+                            <label for="Bevel">Bevel:</label>
+                            <input type="checkbox" name="Bevel" id="lineBevel">
+                        </div>
+                        <div>
+                            <label for="Round">Round:</label>
+                            <input type="checkbox" name="Round" id="lineRound">
+                        </div>
+                        <div>
+                            <label for="Miter">Miter:</label>
+                            <input type="checkbox" name="Miter" id="lineMiter">
+                        </div>
+                    </div>
+                </div>
+                <!-- Color pallete -->
+                <div>
+                    <label>Color pallete: </label>
+                    <input type="color" name="color" id="colorPalette">
+                </div>
+
+                <!-- CHOOSE BACKGROUND -->
+                <div>
+                    <label>Background: </label>
+                    <div class="background-container">
+                        <div class="background-box"></div>
+                        <div class="background-box"></div>
+                        <div class="background-box"></div>
+                        <div class="background-box"></div>
+                        <div class="background-box"></div>
+                        <div class="background-box"></div>
+                    </div>
+                </div>
+
+                <!-- SAVE DRAWING -->
+                <button id="saveDrawing">Save</button>
+                
+                <!-- EXIT -->
+                <span id="exit">exit</span>
+            </div>
+            <canvas id="canvas" width="800px" height="450px"></canvas>
+        </main>
+
+        <!-- About menu -->
+        <div class="about-menu">
+            <h3>About</h3>
+            <p>A simple canvas painting app, where you can draw whatever you want.</p>
+            <button id="close-about">Close</button>
+        </div>
+    </div>
+    <script src="./build/js/app.js"></script>
+</body>
+</html>
