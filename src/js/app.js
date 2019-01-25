@@ -20,6 +20,8 @@ class Ui {
         this.lineTypes = document.querySelectorAll(".line-type");
         this.checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
 
+        this.strLineChecked = false;
+
     }
 
     // Display canvas
@@ -45,6 +47,7 @@ class Ui {
         }
     }
 
+    // Filter the clicked checkboxes and pass their name as a line cap and line join property
     filterBoxes(id, name) {
         let boxes = null;
         if(name === "cap-type") {
@@ -83,11 +86,19 @@ class Ui {
                     theCanvas.ctx.lineJoin = box.name;
                 }
             })
+        } else {
+            boxes = [...this.checkboxes];
+
+            boxes.filter(box => {
+                if(box.id === "strLine") {
+                    this.strLineChecked = !this.strLineChecked;
+                }
+            });
         }
     }
 
     // Save the drawing
-    saveDrawing(e) {
+    saveDrawing() {
         this.save.href = this.canvas.toDataURL();
         this.save.download = "mypainting.png"; 
     }
@@ -106,6 +117,9 @@ class Canvas {
         this.ctx.lineCap = "round";
         this.ctx.lineJoin = "miter";
         this.ctx.lineWidth = 20;
+
+        // Drawing a straight line
+        this.needFirstPoint = true;
     }
 
     // Draw on the canvas
@@ -113,15 +127,32 @@ class Canvas {
         // If user is not drawing anymore, end the function
         if(!this.isDrawing) return;
 
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.lastX, this.lastY);
-        this.ctx.lineTo(e.offsetX, e.offsetY);
-        this.ctx.stroke();
+        if(!ui.strLineChecked) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.lastX, this.lastY);
+            this.ctx.lineTo(e.offsetX, e.offsetY);
+            this.ctx.stroke();
+    
+            // Re-save the position
+            this.lastX = e.offsetX;
+            this.lastY = e.offsetY;
+        }
+    }
 
-        // Re-save the position
-        this.lastX = e.offsetX;
-        this.lastY = e.offsetY;
-
+    drawStraightLine(x, y) {
+        if(ui.strLineChecked) {
+            if(this.needFirstPoint) {
+                // this.ctx.lineWidth = 5;
+                console.log(ui.strLineChecked);
+                this.ctx.beginPath();
+                this.ctx.moveTo(x, y);
+                this.needFirstPoint = false;
+            } else {
+                this.ctx.lineTo(x, y)
+                this.ctx.stroke();
+                this.needFirstPoint = true;
+            }
+        }
     }
 
     // Change cap width
@@ -183,3 +214,13 @@ ui.checkboxes.forEach(box => box.addEventListener("click", () => {
     const name = box.className;
     ui.filterBoxes(id, name);
 }))
+
+let clicks = [];
+ui.canvas.addEventListener("click", e => {
+    let x = e.offsetX;
+    let y = e.offsetY;
+    theCanvas.drawStraightLine(x, y);
+    console.log(x, y);
+})
+
+console.log(theCanvas.testX, theCanvas.testY);
