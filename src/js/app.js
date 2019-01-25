@@ -19,9 +19,10 @@ class Ui {
         this.capTypes = document.querySelectorAll(".cap-type");
         this.lineTypes = document.querySelectorAll(".line-type");
         this.checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
+        this.colorInputs = document.querySelectorAll(`input[type="color"]`);
 
+        // Checkbox for toggling between straight line mode on/off
         this.strLineChecked = false;
-
     }
 
     // Display canvas
@@ -117,6 +118,7 @@ class Canvas {
         this.ctx.lineCap = "round";
         this.ctx.lineJoin = "miter";
         this.ctx.lineWidth = 20;
+        this.ctx.strokeStyle = "#000000";
 
         // Drawing a straight line
         this.needFirstPoint = true;
@@ -214,13 +216,23 @@ ui.checkboxes.forEach(box => box.addEventListener("click", () => {
     const name = box.className;
     ui.filterBoxes(id, name);
 }))
-
-let clicks = [];
 ui.canvas.addEventListener("click", e => {
     let x = e.offsetX;
     let y = e.offsetY;
     theCanvas.drawStraightLine(x, y);
-    console.log(x, y);
 })
 
-console.log(theCanvas.testX, theCanvas.testY);
+// Choose colors for drawing and for the background fill
+ui.colorInputs.forEach(input => input.addEventListener("change", () => {
+    if(input.id === 'colorPalette') {
+        theCanvas.ctx.strokeStyle = input.value;
+    } else if (input.id === "backgroundColor") {
+        let value = input.value;
+        let color = value.toString();
+        console.log(color);
+        // theCanvas.ctx.beginPath();
+        theCanvas.ctx.fillStyle = color;
+        theCanvas.ctx.fillRect(0, 0, ui.canvas.width, ui.canvas.height);
+        // theCanvas.ctx.fill();
+    }
+}))
