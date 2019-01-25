@@ -13,9 +13,13 @@ class Ui {
         this.closeAbout = document.querySelector("#close-about");
         this.clear = document.querySelector("#clearCanvas");
 
-        // Input
+        // Inputs
         this.capWidth = document.querySelector("#capWidth");
         this.holdingSlider = false;
+        this.capTypes = document.querySelectorAll(".cap-type");
+        this.lineTypes = document.querySelectorAll(".line-type");
+        this.checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
+
     }
 
     // Display canvas
@@ -38,6 +42,47 @@ class Ui {
             this.aboutMenu.style.display = "block";
         } else if (action === "close") {
             this.aboutMenu.style.display = "none";
+        }
+    }
+
+    filterBoxes(id, name) {
+        let boxes = null;
+        if(name === "cap-type") {
+            // Convert checkboxes node list to an array
+            boxes = [...this.capTypes];
+
+            // Filter the checkboxes
+            boxes.filter(box => {
+                if(box.id !== id) {
+                    // Uncheck all the boxes that DON'T match the ID of the clicked box.
+                    box.checked = false;
+                } else if(box.id === id) {
+                    // If user clicks on the same box that is already checked,
+                    // it CAN'T be un-checked
+                    box.checked = true;
+
+                    // Use the clicked box name as a property for the cap type
+                    theCanvas.ctx.lineCap = box.name;
+                }
+            })
+        } else if (name === "line-type") {
+            // Convert checkboxes node list to an array
+            boxes = [...this.lineTypes];
+
+            // Filter the checkboxes
+            boxes.filter(box => {
+                if(box.id !== id) {
+                    // Uncheck all the boxes that DON'T match the ID of the clicked box.
+                    box.checked = false;
+                } else if(box.id === id) {
+                    // If user clicks on the same box that is already checked,
+                    // it can not be un-checked
+                    box.checked = true;
+
+                    // Use the clicked box name as a property for the line type
+                    theCanvas.ctx.lineJoin = box.name;
+                }
+            })
         }
     }
 
@@ -130,3 +175,11 @@ ui.save.addEventListener("click", ui.saveDrawing.bind(ui));
 ui.capWidth.addEventListener("mousemove", theCanvas.changeWidth.bind(theCanvas));
 ui.capWidth.addEventListener("mousedown", () => ui.holdingSlider = true)
 ui.capWidth.addEventListener("mouseup", () => ui.holdingSlider = false)
+
+// Add a click event to each checkbox and pass the clicked box id and class name to the
+// filterBoxes function in the UI class.
+ui.checkboxes.forEach(box => box.addEventListener("click", () => {
+    const id = box.id;
+    const name = box.className;
+    ui.filterBoxes(id, name);
+}))
