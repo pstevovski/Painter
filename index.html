@@ -26,12 +26,12 @@
                 <div class="cap-props">
                     <!-- CAP WIDTH -->
                     <div>
-                        <label>Cap width: </label>
-                        <input type="range" name="capWidth" id="capWidth">
+                        <h4>Cap width: </h4>
+                        <input type="range" name="capWidth" id="capWidth" min="1" max="100" step="1" value="100">
                     </div>
                     <!-- CAP TYPE -->
                     <div>
-                        <label>Cap type: </label>
+                        <h4>Cap type: </h4>
                         <div>
                             <label for="Round">Round:</label>
                             <input type="checkbox" name="Round" id="capRound">
@@ -47,7 +47,7 @@
                     </div>
                     <!-- LINE JOIN TYPE -->
                     <div>
-                        <p>Line Join type:</p>
+                        <h4>Line Join type:</h4>
                         <div>
                             <label for="Bevel">Bevel:</label>
                             <input type="checkbox" name="Bevel" id="lineBevel">
@@ -64,13 +64,13 @@
                 </div>
                 <!-- Color pallete -->
                 <div>
-                    <label>Color pallete: </label>
+                    <h4>Color pallete: </h4>
                     <input type="color" name="color" id="colorPalette">
                 </div>
 
                 <!-- CHOOSE BACKGROUND -->
                 <div>
-                    <label>Background: </label>
+                    <h4>Background: </h4>
                     <div class="background-container">
                         <div class="background-box"></div>
                         <div class="background-box"></div>
@@ -80,14 +80,15 @@
                         <div class="background-box"></div>
                     </div>
                 </div>
-
+                <!-- CLEAR CANVAS -->
+                <button id="clearCanvas">Clear</button>
                 <!-- SAVE DRAWING -->
-                <button id="saveDrawing">Save</button>
+                <a id="saveDrawing">Save</a>
                 
                 <!-- EXIT -->
                 <span id="exit">exit</span>
             </div>
-            <canvas id="canvas" width="800px" height="450px"></canvas>
+            <canvas id="canvas" width="800px" height="500px"></canvas>
         </main>
 
         <!-- About menu -->
