@@ -27,52 +27,64 @@
                     <!-- CAP WIDTH -->
                     <div>
                         <h4>Cap width: </h4>
-                        <input type="range" name="capWidth" id="capWidth" min="1" max="100" step="1" value="100">
+                        <input type="range" name="capWidth" id="capWidth" min="1" max="100" step="1" value="20">
                     </div>
                     <!-- CAP TYPE -->
                     <div>
                         <h4>Cap type: </h4>
                         <div>
-                            <label for="Round">Round:</label>
-                            <input type="checkbox" name="Round" id="capRound">
+                            <label for="capRound">Round:</label>
+                            <input class="cap-type" type="checkbox" name="round" id="capRound" checked>
                         </div>
                         <div>
                             <label for="Square">Square:</label>
-                            <input type="checkbox" name="Square" id="capSquare">
+                            <input class="cap-type" type="checkbox" name="square" id="capSquare">
                         </div>
                         <div>
                             <label for="Butt">Butt:</label>
-                            <input type="checkbox" name="Butt" id="capButt">
+                            <input class="cap-type" type="checkbox" name="butt" id="capButt">
                         </div>
                     </div>
                     <!-- LINE JOIN TYPE -->
                     <div>
                         <h4>Line Join type:</h4>
                         <div>
-                            <label for="Bevel">Bevel:</label>
-                            <input type="checkbox" name="Bevel" id="lineBevel">
+                            <label for="Round">Round:</label>
+                            <input class="line-type" type="checkbox" name="round" id="lineRound" checked>
                         </div>
                         <div>
-                            <label for="Round">Round:</label>
-                            <input type="checkbox" name="Round" id="lineRound">
+                            <label for="Bevel">Bevel:</label>
+                            <input class="line-type" type="checkbox" name="bevel" id="lineBevel">
                         </div>
                         <div>
                             <label for="Miter">Miter:</label>
-                            <input type="checkbox" name="Miter" id="lineMiter">
+                            <input class="line-type" type="checkbox" name="miter" id="lineMiter">
                         </div>
                     </div>
                 </div>
+                
+                <div>
+                    <h4>Draw straight line:</h4>
+                    <input type="checkbox" name="strLine" id="strLine">
+                </div>
+
                 <!-- Color pallete -->
                 <div>
                     <h4>Color pallete: </h4>
                     <input type="color" name="color" id="colorPalette">
                 </div>
 
+                <!-- Background color fill -->
+                <div>
+                    <h4>Background color:</h4>
+                    <input type="color" name="color" id="backgroundColor">
+                </div>
+
                 <!-- CHOOSE BACKGROUND -->
                 <div>
                     <h4>Background: </h4>
                     <div class="background-container">
-                        <div class="background-box"></div>
+                        <div class="background-box" id="testBox">test</div>
                         <div class="background-box"></div>
                         <div class="background-box"></div>
                         <div class="background-box"></div>
