@@ -1,7 +1,6 @@
 class Ui {
     constructor() {
         this.canvas = document.querySelector("#canvas");
-        this.ctx = this.canvas.getContext("2d");
         this.menu = document.querySelector(".main-menu");
         this.aboutMenu = document.querySelector(".about-menu");
         this.drawingField = document.querySelector("#main");
@@ -9,13 +8,14 @@ class Ui {
         // Buttons
         this.menuBtn = document.querySelector("#draw");
         this.aboutBtn = document.querySelector("#about");
+        this.save = document.querySelector("#saveDrawing");
         this.exit = document.querySelector("#exit");
         this.closeAbout = document.querySelector("#close-about");
+        this.clear = document.querySelector("#clearCanvas");
 
-        // Canvas property
-        this.ctx.lineJoin = "round";
-        this.ctx.lineCap = "round";
-        this.ctx.lineWidth = 50;
+        // Input
+        this.capWidth = document.querySelector("#capWidth");
+        this.holdingSlider = false;
     }
 
     // Display canvas
@@ -26,6 +26,9 @@ class Ui {
         } else if (action === "hide") {
             this.menu.style.display = "block";
             this.drawingField.style.display = "none";
+
+            // If user clicked EXIT, clear the canvas
+            theCanvas.clearCanvas();
         }
     }
 
@@ -37,6 +40,12 @@ class Ui {
             this.aboutMenu.style.display = "none";
         }
     }
+
+    // Save the drawing
+    saveDrawing(e) {
+        this.save.href = this.canvas.toDataURL();
+        this.save.download = "mypainting.png"; 
+    }
 }
 
 // Drawing field
@@ -46,6 +55,12 @@ class Canvas {
         this.lastY = 0;
         this.direction = true;
         this.isDrawing = false;
+        this.ctx = ui.canvas.getContext("2d");
+
+        // Canvas property
+        this.ctx.lineCap = "round";
+        this.ctx.lineJoin = "miter";
+        this.ctx.lineWidth = 20;
     }
 
     // Draw on the canvas
@@ -53,16 +68,31 @@ class Canvas {
         // If user is not drawing anymore, end the function
         if(!this.isDrawing) return;
 
-        ui.ctx.beginPath();
-        ui.ctx.moveTo(this.lastX, this.lastY);
-        ui.ctx.lineTo(e.offsetX, e.offsetY);
-        ui.ctx.stroke();
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.lastX, this.lastY);
+        this.ctx.lineTo(e.offsetX, e.offsetY);
+        this.ctx.stroke();
 
         // Re-save the position
         this.lastX = e.offsetX;
         this.lastY = e.offsetY;
 
     }
+
+    // Change cap width
+    changeWidth(e) {
+        if(ui.holdingSlider) {
+            let { value } = e.target;
+            this.ctx.lineWidth = value;
+        }
+    }
+
+    // Clear the canvas
+    clearCanvas() {
+        // Clear the canvas
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    }
+
 }
 
 const ui = new Ui();
@@ -92,3 +122,11 @@ ui.canvas.addEventListener("mousedown", e => {
 ui.canvas.addEventListener("mousemove", theCanvas.draw.bind(theCanvas));
 ui.canvas.addEventListener("mouseup", () => theCanvas.isDrawing = false);
 ui.canvas.addEventListener("mouseout", () => theCanvas.isDrawing = false);
+ui.clear.addEventListener("click", theCanvas.clearCanvas.bind(theCanvas));
+
+ui.save.addEventListener("click", ui.saveDrawing.bind(ui));
+
+// Input field
+ui.capWidth.addEventListener("mousemove", theCanvas.changeWidth.bind(theCanvas));
+ui.capWidth.addEventListener("mousedown", () => ui.holdingSlider = true)
+ui.capWidth.addEventListener("mouseup", () => ui.holdingSlider = false)
