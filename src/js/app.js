@@ -103,6 +103,15 @@ class Ui {
         this.save.href = this.canvas.toDataURL();
         this.save.download = "mypainting.png"; 
     }
+
+    // Display notifications
+    displayNotification(notification) {
+        if(notification === "decreased") {
+            console.log("The cap size has been decreased")
+        } else {
+            console.log("The cap size has been increased");
+        }
+    }
 }
 
 // Drawing field
@@ -141,10 +150,10 @@ class Canvas {
         }
     }
 
+    // Draw a straight line between two button clicks
     drawStraightLine(x, y) {
         if(ui.strLineChecked) {
             if(this.needFirstPoint) {
-                // this.ctx.lineWidth = 5;
                 console.log(ui.strLineChecked);
                 this.ctx.beginPath();
                 this.ctx.moveTo(x, y);
@@ -158,11 +167,33 @@ class Canvas {
     }
 
     // Change cap width
-    changeWidth(e) {
+    changeCapSize(e) {
+        e = e || event;
+
+        // Change cap size using the slider
         if(ui.holdingSlider) {
             let { value } = e.target;
             this.ctx.lineWidth = value;
         }
+
+        // If user presses [, decrease size. If user presses ], increase cap size
+        if(e.keyCode === 219) {
+            this.ctx.lineWidth--;
+            ui.capWidth.value = this.ctx.lineWidth;
+
+            // Display notification that cap size has been changed
+            ui.displayNotification("decreased")
+        } else if (e.keyCode === 221) {
+            this.ctx.lineWidth++;
+            ui.capWidth.value = this.ctx.lineWidth;
+
+            // Display notification that cap size has been changed
+            ui.displayNotification("increased")
+        }
+
+        // Change the text value for the cap size
+        const capSizeText = document.querySelector("#current-capSize");
+        capSizeText.textContent = `${this.ctx.lineWidth}px`;
     }
 
     // Clear the canvas
@@ -205,9 +236,10 @@ ui.clear.addEventListener("click", theCanvas.clearCanvas.bind(theCanvas));
 ui.save.addEventListener("click", ui.saveDrawing.bind(ui));
 
 // Input field
-ui.capWidth.addEventListener("mousemove", theCanvas.changeWidth.bind(theCanvas));
+ui.capWidth.addEventListener("mousemove", theCanvas.changeCapSize.bind(theCanvas));
 ui.capWidth.addEventListener("mousedown", () => ui.holdingSlider = true)
 ui.capWidth.addEventListener("mouseup", () => ui.holdingSlider = false)
+document.addEventListener("keydown", theCanvas.changeCapSize.bind(theCanvas));
 
 // Add a click event to each checkbox and pass the clicked box id and class name to the
 // filterBoxes function in the UI class.
