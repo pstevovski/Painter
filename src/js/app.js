@@ -112,6 +112,21 @@ class Ui {
             console.log("The cap size has been increased");
         }
     }
+
+    // Display changes made to the cap size, drawing color and background fill.
+    displayChanges(change, value) {
+        if(change === "capSize") {
+            // Change the text value for the cap size
+            const capSizeText = document.querySelector("#current-capSize");
+            capSizeText.textContent = `${theCanvas.ctx.lineWidth}px`;
+        } else if (change === "draw-color") {
+            const drawColorText = document.querySelector("#current-drawColor");
+            drawColorText.textContent = `${theCanvas.ctx.strokeStyle}`;
+        } else if (change === "fill-color") {
+            const fillColorText = document.querySelector("#current-bgColor");
+            fillColorText.textContent = `${value}`;
+        }
+    }
 }
 
 // Drawing field
@@ -191,9 +206,7 @@ class Canvas {
             ui.displayNotification("increased")
         }
 
-        // Change the text value for the cap size
-        const capSizeText = document.querySelector("#current-capSize");
-        capSizeText.textContent = `${this.ctx.lineWidth}px`;
+        ui.displayChanges("capSize");
     }
 
     // Clear the canvas
@@ -258,13 +271,15 @@ ui.canvas.addEventListener("click", e => {
 ui.colorInputs.forEach(input => input.addEventListener("change", () => {
     if(input.id === 'colorPalette') {
         theCanvas.ctx.strokeStyle = input.value;
+
+        // Display changes
+        ui.displayChanges("draw-color");
     } else if (input.id === "backgroundColor") {
-        let value = input.value;
-        let color = value.toString();
-        console.log(color);
-        // theCanvas.ctx.beginPath();
-        theCanvas.ctx.fillStyle = color;
+        let passedValue = JSON.stringify(input.value);
+        theCanvas.ctx.fillStyle = input.value;
         theCanvas.ctx.fillRect(0, 0, ui.canvas.width, ui.canvas.height);
-        // theCanvas.ctx.fill();
+
+        // Display changes
+        ui.displayChanges("fill-color", passedValue);
     }
 }))

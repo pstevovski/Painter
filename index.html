@@ -26,7 +26,7 @@
                 <div class="cap-props">
                     <!-- CAP WIDTH -->
                     <div>
-                        <h4>Cap width: </h4>
+                        <h4>Cap width: <span id="current-capSize">20px</span></h4>
                         <input type="range" name="capWidth" id="capWidth" min="1" max="100" step="1" value="20">
                     </div>
                     <!-- CAP TYPE -->
@@ -70,27 +70,27 @@
 
                 <!-- Color pallete -->
                 <div>
-                    <h4>Color pallete: </h4>
+                    <h4>Color pallete: <span id="current-drawColor">#222222</span></h4>
                     <input type="color" name="color" id="colorPalette">
                 </div>
 
                 <!-- Background color fill -->
                 <div>
-                    <h4>Background color:</h4>
+                    <h4>Fill color: <span id="current-bgColor">#333333</span></h4>
                     <input type="color" name="color" id="backgroundColor">
                 </div>
 
                 <!-- CHOOSE BACKGROUND -->
                 <div>
                     <h4>Background: </h4>
-                    <div class="background-container">
+                    <!-- <div class="background-container">
                         <div class="background-box" id="testBox">test</div>
                         <div class="background-box"></div>
                         <div class="background-box"></div>
                         <div class="background-box"></div>
                         <div class="background-box"></div>
                         <div class="background-box"></div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- CLEAR CANVAS -->
                 <button id="clearCanvas">Clear</button>
