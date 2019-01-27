@@ -71,7 +71,9 @@
                 <!-- Color pallete -->
                 <div>
                     <h4>Color pallete: <span id="current-drawColor">#222222</span></h4>
-                    <input type="color" name="color" id="colorPalette">
+                    <div id="color-pallete_container">
+                        <input type="color" name="color" id="colorPalette"><span id="color-info"><i class="material-icons">colorize</i></span>
+                    </div>
                 </div>
 
                 <!-- Background color fill -->
@@ -82,15 +84,7 @@
 
                 <!-- CHOOSE BACKGROUND -->
                 <div>
-                    <h4>Background: </h4>
-                    <!-- <div class="background-container">
-                        <div class="background-box" id="testBox">test</div>
-                        <div class="background-box"></div>
-                        <div class="background-box"></div>
-                        <div class="background-box"></div>
-                        <div class="background-box"></div>
-                        <div class="background-box"></div>
-                    </div> -->
+                    <button id="choose-bg">Choose BG</button>
                 </div>
                 <!-- CLEAR CANVAS -->
                 <button id="clearCanvas">Clear</button>
