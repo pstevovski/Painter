@@ -1,2 +1,5 @@
-# DrawGraffiti
-Draw graffities or whatever you like, on a surface you choose.
+# DrawThings
+DrawThings things on the canvas and save your paintings.
+
+Created with:
+* HTML 5, SCSS, JavaScript, Gulp
