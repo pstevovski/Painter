@@ -25,11 +25,36 @@ class Ui {
         this.strLineChecked = false;
     }
 
+    // Reset data
+    resetData() {
+        // Canvas property
+        theCanvas.ctx.lineCap = "round";
+        theCanvas.ctx.lineJoin = "miter";
+        theCanvas.ctx.lineWidth = 20;
+        theCanvas.ctx.strokeStyle = "#000000";
+
+        // Reset the values to the default ones
+        this.capWidth.value = theCanvas.ctx.lineWidth;
+        this.colorInputs.forEach(input => input.value = "#000000");
+
+        // Reset the checkboxes to default ones
+        const checkboxes = [...this.checkboxes];
+        checkboxes.forEach(cap => cap.checked = false);
+        this.lineTypes[0].checked = true;
+        this.capTypes[0].checked = true;
+
+        // Display the reseted changes in the UI (text for the inputs)
+        ui.displayChanges("all");
+        this.displayCanvas("hide");
+    }
+
     // Display canvas
     displayCanvas(action) {
         if(action === "display") {
             this.drawingField.style.display = "flex";
             this.menu.style.display = "none";
+            theCanvas.ctx.fillStyle = "#fff";
+            theCanvas.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         } else if (action === "hide") {
             this.menu.style.display = "block";
             this.drawingField.style.display = "none";
@@ -115,16 +140,21 @@ class Ui {
 
     // Display changes made to the cap size, drawing color and background fill.
     displayChanges(change, value) {
+        const capSizeText = document.querySelector("#current-capSize");
+        const drawColorText = document.querySelector("#current-drawColor");
+        const fillColorText = document.querySelector("#current-bgColor");
+
         if(change === "capSize") {
             // Change the text value for the cap size
-            const capSizeText = document.querySelector("#current-capSize");
             capSizeText.textContent = `${theCanvas.ctx.lineWidth}px`;
         } else if (change === "draw-color") {
-            const drawColorText = document.querySelector("#current-drawColor");
             drawColorText.textContent = `${theCanvas.ctx.strokeStyle}`;
         } else if (change === "fill-color") {
-            const fillColorText = document.querySelector("#current-bgColor");
             fillColorText.textContent = `${value}`;
+        } else if (change === "all") {
+            capSizeText.textContent = `${theCanvas.ctx.lineWidth}px`;
+            drawColorText.textContent = `${theCanvas.ctx.strokeStyle}`;
+            fillColorText.textContent = `none`;
         }
     }
 }
@@ -232,7 +262,7 @@ document.body.addEventListener("keyup", e => {
 
 // Draw menu listeners
 ui.menuBtn.addEventListener("click", ui.displayCanvas.bind(ui, "display"));
-ui.exit.addEventListener("click", ui.displayCanvas.bind(ui, "hide"));
+ui.exit.addEventListener("click", ui.resetData.bind(ui));
 
 
 // Canvas (drawing) event listeners
