@@ -1,0 +1,271 @@
+$colors: (
+    backgroundCol: #fff,
+    color: #222,
+    placeholder: #33333380,
+    titlesColor: #0097e6
+);
+
+@function color($colorName) {
+    @return map-get($colors, $colorName );
+};
+
+// Fonts
+$titleFont: "Montserrat Black";
+$mainFont: "Montserrat Medium";
+$textFont: "Montserrat Bold";
+
+// Reset margin and padding
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    button {
+        width: 100px;
+        padding: 5px;
+        margin: 3px 0;
+        background: none;
+        border: 1px solid rgba(0,0,0,0.3);
+        border-radius: 2px;
+        cursor: pointer;
+        outline: none;
+
+        font-family: $mainFont;
+        color: color(color);
+        background: color(backgroundCol);
+        transition: 0.2s ease;
+    }
+
+    button:hover {
+        border: 1px solid rgba(0,0,0,0.6);
+        color: color(backgroundCol);
+        background: color(color);
+    }
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color(backgroundCol);
+}
+.main-menu {
+    display: block;
+    width: 250px;
+    // background-color: red;
+    text-align: center;
+    padding: 10px;
+
+    h1 {
+        font-family: $titleFont;
+        font-size: 2rem;
+    }
+
+    p {
+        font-style: italic;
+        font-family: $mainFont;
+        color: color(placeholder);
+        font-size: .8rem;
+    }
+
+    // Buttons
+    .buttons-main {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+main {
+    display: none;
+    height: 500px;
+
+    canvas {
+        border: 1px solid rgba(0,0,0,0.2);
+        background-repeat: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+
+    // CONTROLS
+    .controls {
+        width: 200px;
+        height: 100%;
+        // background-color: red;
+        border: 1px solid rgba(0,0,0,0.2);
+        padding: 8px;
+        margin-right: 5px;
+        position: relative;
+
+        // Titles
+        h4 {
+            color: color(titlesColor);
+            font-family: $textFont;
+        }
+
+        label {
+            font-family: $mainFont;
+            font-size: 0.9rem;
+        }
+
+        // Download drawing
+        #saveDrawing {
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.3);
+            margin: 10px 0;
+            padding: 5px;
+            cursor: pointer;
+
+            font-family: $mainFont;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: color(titlesColor);
+            background-color: color(backgroundCol);
+            transition: 0.2s ease;
+        }
+        #saveDrawing:hover {
+            color: color(backgroundCol);
+            background-color: color(titlesColor);
+        }
+
+        // Checkboxes for cap and line types
+        .cap-line_type {
+            display: flex;
+            justify-content: space-between;
+
+            input {
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                border: 3px solid red;
+            }
+            // background-color: red;
+        }
+
+        #clear-all_container {
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+
+            i {
+                margin-left: 10px;
+                color: color(placeholder);
+                cursor: pointer;
+                transition: 0.2s ease;
+            }
+
+            i:hover {
+                transform: translateY(-2px);
+                color: #e1302a;
+            }
+
+        }
+
+        #exit {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            cursor: pointer;
+
+            font-family: $mainFont;
+            font-size: 0.85rem;
+            transition: 0.2s ease;
+        }
+        #exit:hover {
+            color: color(titlesColor);
+        }
+    }
+
+    // BACKGROUND CHOOSING CONTAINER
+    .background-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .background-box {
+            width: 50px;
+            height: 50px;
+            background-color:gold;
+            margin: 5px 3px;
+        }
+    } 
+}
+
+// ABOUT MENU
+.about-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: color(backgroundCol);
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    text-align: center;
+
+    h3 {
+        font-family: $titleFont;
+        font-size: 1.5rem;
+        color: color(placeholder);
+        text-transform: uppercase;
+    }
+
+    p {
+        font-family: $mainFont;
+        font-size: 0.8rem;
+    }
+}
+
+#color-pallete_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    #color-info {
+        margin-left: 10px;
+        cursor: pointer;
+        color: color(placeholder);
+        transition: 0.2s ease;
+    }
+    #color-info:hover {
+        color: #e1302a;
+    }
+}
+
+
+// SUPPORT FOR MATERIAL ICONS
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    -webkit-font-feature-settings: 'liga';
+            font-feature-settings: 'liga';
+  }

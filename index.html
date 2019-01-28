@@ -32,15 +32,15 @@
                     <!-- CAP TYPE -->
                     <div>
                         <h4>Cap type: </h4>
-                        <div>
+                        <div class="cap-line_type">
                             <label for="capRound">Round:</label>
                             <input class="cap-type" type="checkbox" name="round" id="capRound" checked>
                         </div>
-                        <div>
+                        <div class="cap-line_type">
                             <label for="Square">Square:</label>
                             <input class="cap-type" type="checkbox" name="square" id="capSquare">
                         </div>
-                        <div>
+                        <div class="cap-line_type">
                             <label for="Butt">Butt:</label>
                             <input class="cap-type" type="checkbox" name="butt" id="capButt">
                         </div>
@@ -48,15 +48,15 @@
                     <!-- LINE JOIN TYPE -->
                     <div>
                         <h4>Line Join type:</h4>
-                        <div>
+                        <div class="cap-line_type">
                             <label for="Round">Round:</label>
                             <input class="line-type" type="checkbox" name="round" id="lineRound" checked>
                         </div>
-                        <div>
+                        <div class="cap-line_type">
                             <label for="Bevel">Bevel:</label>
                             <input class="line-type" type="checkbox" name="bevel" id="lineBevel">
                         </div>
-                        <div>
+                        <div class="cap-line_type">
                             <label for="Miter">Miter:</label>
                             <input class="line-type" type="checkbox" name="miter" id="lineMiter">
                         </div>
@@ -70,7 +70,7 @@
 
                 <!-- Color pallete -->
                 <div>
-                    <h4>Color pallete: <span id="current-drawColor">#222222</span></h4>
+                    <h4>Color: <span id="current-drawColor">#000000</span></h4>
                     <div id="color-pallete_container">
                         <input type="color" name="color" id="colorPalette"><span id="color-info"><i class="material-icons">colorize</i></span>
                     </div>
@@ -78,18 +78,20 @@
 
                 <!-- Background color fill -->
                 <div>
-                    <h4>Fill color: <span id="current-bgColor">#333333</span></h4>
+                    <h4>Fill color: <span id="current-bgColor">none</span></h4>
                     <input type="color" name="color" id="backgroundColor">
                 </div>
 
+                <!-- CLEAR CANVAS -->
+                <h4 id="clear-all_container">Clear all: <span id="clearCanvas"><i class="material-icons">delete_forever</i></span></h4>
+
                 <!-- CHOOSE BACKGROUND -->
                 <div>
-                    <button id="choose-bg">Choose BG</button>
+                    <!-- <button id="choose-bg">Background</button> -->
                 </div>
-                <!-- CLEAR CANVAS -->
-                <button id="clearCanvas">Clear</button>
+
                 <!-- SAVE DRAWING -->
-                <a id="saveDrawing">Save</a>
+                <a id="saveDrawing">Download</a>
                 
                 <!-- EXIT -->
                 <span id="exit">exit</span>
