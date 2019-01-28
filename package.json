@@ -4,7 +4,8 @@
   "description": "Draw anything you'd like",
   "main": "./build/js/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --output-dir build"
   },
   "repository": {
     "type": "git",
@@ -20,13 +21,8 @@
     "url": "https://github.com/pecko95/DrawGraffiti/issues"
   },
   "homepage": "https://github.com/pecko95/DrawGraffiti#readme",
-  "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-babel-minify": "^0.5.0",
-    "gulp-sass": "^4.0.2",
-    "node-sass": "^4.11.0"
-  },
   "dependencies": {
-    "gulp-uglifycss": "^1.1.0"
+    "parcel-bundler": "^1.11.0",
+    "sass": "^1.16.1"
   }
 }
