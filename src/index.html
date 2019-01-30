@@ -13,9 +13,28 @@
             <p>Draw something!</p>
 
             <div class="buttons-main">
-                <button id="draw">Draw !</button>
+                <button id="new-project">New</button>
                 <button id="about">About</button>
                 <a href="https://github.com/pecko95/DrawThings" target="_blank"><img src="./github-logo.png" alt="GitHub" title="GitHub" width="20px" height="20px"></a>
+            </div>
+        </div>
+
+        <!-- New project window -->
+        <div class="new-project_window">
+            <h3>Set the size of the canvas: </h3>
+            <p id="show-warning">Resizing the canvas will reset it to default state.</p>
+            <div class="input-fields">
+                <label>Width: </label>
+                <input type="number" id="width-input"  value="800" placeholder="800" max="4096" min="0">
+            </div>
+            <div class="input-fields">
+                <label>Height: </label>
+                <input type="number" id="height-input" value="500" placeholder="500" max="2160" min="0">
+            </div>
+
+            <div class="new-project_buttons">
+                <button id="goBack">Back</button>
+                <button id="draw">Draw</button>
             </div>
         </div>
 
@@ -62,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
                     <h4>Draw straight line:</h4>
                     <input type="checkbox" name="strLine" id="strLine">
@@ -82,13 +101,11 @@
                     <input type="color" name="color" id="backgroundColor">
                 </div>
 
+                <!-- CHANGE CANVAS WIDTH / HEIGHT -->
+                <button id="canvas-size">Change canvas size:</button>
+
                 <!-- CLEAR CANVAS -->
                 <h4 id="clear-all_container">Clear all: <span id="clearCanvas"><i class="material-icons">delete_forever</i></span></h4>
-
-                <!-- CHOOSE BACKGROUND -->
-                <div>
-                    <!-- <button id="choose-bg">Background</button> -->
-                </div>
 
                 <!-- SAVE DRAWING -->
                 <a id="saveDrawing">Download</a>
@@ -96,7 +113,10 @@
                 <!-- EXIT -->
                 <span id="exit">exit</span>
             </div>
-            <canvas id="canvas" width="800px" height="500px"></canvas>
+
+            <div class="canvas-container">
+                <canvas id="canvas" width="800px" height="500px"></canvas>
+            </div>
         </main>
 
         <!-- About menu -->
