@@ -1,7 +1,8 @@
 // Import modules
 import { ui }  from './ui';
-import { theCanvas }  from './canvas';
 import { inputs } from './inputs';
+import { history } from './controlHistory';
+import { theCanvas }  from './canvas';
 
 // Import SCSS
 import '../scss/main';
