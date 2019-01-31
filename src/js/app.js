@@ -1,11 +1,13 @@
 // Import modules
 import { ui }  from './ui';
-import { theCanvas }  from './canvas'
+import { theCanvas }  from './canvas';
+import { inputs } from './inputs';
 
 // Import SCSS
 import '../scss/main';
 
-// COLOR PICKER
+
+// Color picker
 const colorInfo = document.querySelector("#color-info");
 let pickingColor = false;
 colorInfo.addEventListener("click", () => {
