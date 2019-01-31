@@ -64,6 +64,7 @@ body {
     padding: 10px;
     text-align: center;
     width: 200px;
+    background-color: color(backgroundCol);
 
     #show-warning {
         display: none;
@@ -76,6 +77,13 @@ body {
     h3 {
         font-family: $titleFont;
         color: color(titlesColor);
+    }
+
+    p {
+        text-align: center;
+        font-size: 12px;
+        color: #e1302a;
+        font-family: $mainFont;
     }
 
     .input-fields {
@@ -95,6 +103,11 @@ body {
     button {
         width: 60px;
     }
+}
+
+.new-project_window.active {
+    border: 1px solid rgba(0,0,0,0.3);
+    width: 250px;
 }
 
 .main-menu {
@@ -145,6 +158,15 @@ main {
         justify-content: center;
         align-items: center;
         // background-color: red;
+
+        #cap-pointer {
+            display: none;
+            width: 20px;
+            height: 20px;
+            background-color: #000000;
+            position: absolute;
+            // z-index: ;
+        }
 
         canvas {
             border: 1px solid rgba(0,0,0,0.2);
