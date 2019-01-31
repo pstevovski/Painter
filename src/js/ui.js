@@ -1,4 +1,5 @@
 import { theCanvas } from './canvas'
+import { inputs } from './inputs';
 
 class Ui {
     constructor() {
@@ -22,17 +23,9 @@ class Ui {
         this.capTypes = document.querySelectorAll(".cap-type");
         this.lineTypes = document.querySelectorAll(".line-type");
         this.checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
-        this.colorInputs = document.querySelectorAll(`input[type="color"]`);
-        this.widthInput = document.querySelector("#width-input");
-        this.heightInput = document.querySelector("#height-input");
 
         // Checkbox for toggling between straight line mode on/off
         this.strLineChecked = false;
-
-        // Background Menu
-        this.openBgMenu = document.querySelector("#choose-bg");
-        this.bgMenu = document.querySelector("#background-container");
-        this.closeBgMenu = document.querySelector("#closeBgMenu");
     }
 
     // Reset data
@@ -42,8 +35,8 @@ class Ui {
 
         theCanvas.canvas.width = 800;
         theCanvas.canvas.height = 500;
-        this.widthInput.value = 800;
-        this.heightInput.value = 500;
+        inputs.widthInput.value = 800;
+        inputs.heightInput.value = 500;
 
         // Reset the information initial canvas was already created
         this.isCanvasCreated = false;
@@ -64,6 +57,7 @@ class Ui {
 
             if(this.isCanvasCreated) {
                 document.querySelector("#show-warning").style.display = "block";
+                this.newProjectWindow.classList.add("active");
             }
         } else if (action === "hide") {
             this.newProjectWindow.style.display = "none";
@@ -93,6 +87,7 @@ class Ui {
         } else if (action === "hide") {
             this.menu.style.display = "block";
             this.drawingField.style.display = "none";
+            this.newProjectWindow.classList.remove("active");
 
             // If user clicked EXIT, clear the canvas
             theCanvas.clearCanvas();
@@ -102,17 +97,17 @@ class Ui {
     // Set canvas properties and size
     setCanvasProperties() {
         // Set canvas properties
-        theCanvas.canvas.width = ui.widthInput.value;
-        theCanvas.canvas.height = ui.heightInput.value;
+        theCanvas.canvas.width = inputs.widthInput.value;
+        theCanvas.canvas.height = inputs.heightInput.value;
         theCanvas.ctx.lineCap = "round";
         theCanvas.ctx.lineJoin = "miter";
         theCanvas.ctx.lineWidth = 20;
-        theCanvas.capWidth.value = theCanvas.ctx.lineWidth;
+        inputs.capWidth.value = theCanvas.ctx.lineWidth;
         document.querySelector("#current-capSize").textContent =`${theCanvas.ctx.lineWidth}px`;
 
         // Reset the values to the default ones
-        theCanvas.capWidth.value = theCanvas.ctx.lineWidth;
-        this.colorInputs.forEach(input => input.value = "#000000");
+        inputs.capWidth.value = theCanvas.ctx.lineWidth;
+        inputs.colorInputs.forEach(input => input.value = "#000000");
 
         // Reset the checkboxes to default ones
         const checkboxes = [...this.checkboxes];
@@ -229,23 +224,6 @@ ui.checkboxes.forEach(box => box.addEventListener("click", () => {
     const id = box.id;
     const name = box.className;
     ui.filterBoxes(id, name);
-}))
-
-// Choose colors for drawing and for the background fill
-ui.colorInputs.forEach(input => input.addEventListener("change", () => {
-    if(input.id === 'colorPalette') {
-        theCanvas.ctx.strokeStyle = input.value;
-
-        // Display changes
-        ui.displayChanges("draw-color");
-    } else if (input.id === "backgroundColor") {
-        let passedValue = JSON.stringify(input.value);
-        theCanvas.ctx.fillStyle = input.value;
-        theCanvas.ctx.fillRect(0, 0, theCanvas.canvas.width, theCanvas.canvas.height);
-
-        // Display changes
-        ui.displayChanges("fill-color", passedValue);
-    }
 }))
 
 // Toggle between main menu and new project window that leads towrads the canvas

@@ -9,7 +9,6 @@ class Canvas {
         this.canvas = document.querySelector("#canvas");
         this.ctx = this.canvas.getContext("2d");
         this.clear = document.querySelector("#clearCanvas");
-        this.capWidth = document.querySelector("#capWidth");
 
         // Canvas property
         this.ctx.lineCap = "round";
@@ -42,7 +41,6 @@ class Canvas {
     drawStraightLine(x, y) {
         if(ui.strLineChecked) {
             if(this.needFirstPoint) {
-                console.log(ui.strLineChecked);
                 this.ctx.beginPath();
                 this.ctx.moveTo(x, y);
                 this.needFirstPoint = false;
@@ -53,35 +51,7 @@ class Canvas {
             }
         }
     }
-
-    // Change cap width
-    changeCapSize(e) {
-        e = e || event;
-
-        // Change cap size using the slider
-        if(ui.holdingSlider) {
-            let { value } = e.target;
-            this.ctx.lineWidth = value;
-        }
-
-        // If user presses [, decrease size. If user presses ], increase cap size
-        if(e.keyCode === 219) {
-            this.ctx.lineWidth--;
-            this.capWidth.value = this.ctx.lineWidth;
-
-            // Display notification that cap size has been changed
-            ui.displayNotification("decreased")
-        } else if (e.keyCode === 221) {
-            this.ctx.lineWidth++;
-            this.capWidth.value = this.ctx.lineWidth;
-
-            // Display notification that cap size has been changed
-            ui.displayNotification("increased")
-        }
-
-        ui.displayChanges("capSize");
-    }
-
+    
     // Clear the canvas
     clearCanvas() {
         // Clear the canvas
@@ -101,13 +71,8 @@ theCanvas.canvas.addEventListener("mousemove", theCanvas.draw.bind(theCanvas));
 theCanvas.canvas.addEventListener("mouseup", () => theCanvas.isDrawing = false);
 theCanvas.canvas.addEventListener("mouseout", () => theCanvas.isDrawing = false);
 theCanvas.clear.addEventListener("click", theCanvas.clearCanvas.bind(theCanvas));
-// Input field
-theCanvas.capWidth.addEventListener("mousedown", () => ui.holdingSlider = true)
-theCanvas.capWidth.addEventListener("mouseup", () => ui.holdingSlider = false)
-theCanvas.capWidth.addEventListener("mousemove", theCanvas.changeCapSize.bind(theCanvas));
 theCanvas.canvas.addEventListener("click", e => {
     let x = e.offsetX;
     let y = e.offsetY;
     theCanvas.drawStraightLine(x, y);
 })
-document.addEventListener("keydown", theCanvas.changeCapSize.bind(theCanvas));
