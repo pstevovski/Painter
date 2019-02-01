@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="main-menu">
-            <h1>Painter.</h1>
+            <h1>Pa <i class="material-icons">brush</i> nter.</h1>
             <p>Express your creativity!</p>
 
             <div class="buttons-main">
@@ -101,6 +101,12 @@
                     <input type="color" name="color" id="backgroundColor">
                 </div>
 
+                <!-- UNDO AND REDO -->
+                <div class="undo-redo_container">
+                    <button id="undo" title="Ctrl-Z"><i class="material-icons">undo</i></button>
+                    <button id="redo" title="Ctrl-Y"><i class="material-icons">redo</i></button>
+                </div>
+
                 <!-- CHANGE CANVAS WIDTH / HEIGHT -->
                 <button id="canvas-size">Change canvas size:</button>
 
@@ -108,13 +114,8 @@
                 <h4 id="clear-all_container">Clear all: <span id="clearCanvas"><i class="material-icons">delete_forever</i></span></h4>
 
                 <!-- SAVE DRAWING -->
-                <a id="saveDrawing">Download</a>
+                <a id="saveDrawing" title="Download Image"><i class="material-icons">get_app</i></a>
 
-                <!-- TEST UNDO BUTTON -->
-                <div class="undo-redo_container">
-                    <button id="undo"><i class="material-icons">undo</i></button>
-                    <button id="redo"><i class="material-icons">redo</i></button>
-                </div>
 
                 
                 <!-- EXIT -->

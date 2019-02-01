@@ -43,6 +43,32 @@ body {
         color: color(backgroundCol);
         background: color(color);
     }
+
+    input[type='color'] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+        width: 32px;
+        height: 32px;
+        font-size: 32px;
+        margin-left: 5px;
+        cursor: pointer;
+        outline: none;
+    }
+    #colorPalette::before {
+        font-family: "Material Icons";
+        content: '\e40a';
+    }
+
+    #backgroundColor::before {
+        font-family: 'Material Icons';
+        content: '\e23a';
+    }
+    input[type='color']::-webkit-color-swatch-wrapper {
+        opacity: 0;
+    }
 }
 
 .container {
@@ -118,13 +144,26 @@ body {
     padding: 10px;
 
     h1 {
-        font-family: $titleFont;
-        font-size: 2rem;
+        font-family: "Fredoka One";
+        letter-spacing: 3px;
+        font-size: 3rem;
+        color: color(titlesColor);
+        animation: titleColor 5s ease forwards infinite;
+        position: relative;
+
+        i {
+            font-size: 60px;
+            position: absolute;
+            left: 56px;
+            top: -10px;
+            transform: rotate(140deg);
+            animation: brushAnimation 5s ease forwards infinite;
+        }
     }
 
     p {
+        font-family: "Montserrat SemiBold";
         font-style: italic;
-        font-family: $mainFont;
         color: color(placeholder);
         font-size: .8rem;
     }
@@ -179,16 +218,22 @@ main {
     // CONTROLS
     .controls {
         grid-area: controls;
-        background-color:color(backgroundCol);
-        width: 200px;
+        // background-color:color(backgroundCol);
+        background-color: #f5f5f5;
+        width: 230px;
         height: 100%;
-        // background-color: red;
         border: 1px solid rgba(0,0,0,0.2);
+        border-top: none;
+        border-bottom: none;
         padding: 8px;
         margin-right: 5px;
         position: absolute;
         left: 0;
         top: 0;
+
+        * {
+            margin: 2px 0;
+        }
 
         // Titles
         h4 {
@@ -206,9 +251,13 @@ main {
             display: inline-block;
             border: 1px solid rgba(0,0,0,0.3);
             margin: 10px 0;
-            padding: 5px;
+            // padding: 5px;
             cursor: pointer;
             text-decoration: none;
+
+            position: absolute;
+            bottom: -5px;
+            right: 10px;
 
             font-family: $mainFont;
             text-transform: uppercase;
@@ -216,6 +265,10 @@ main {
             color: color(titlesColor);
             background-color: color(backgroundCol);
             transition: 0.2s ease;
+
+            i {
+                font-size: 24px;
+            }
         }
         #saveDrawing:hover {
             color: color(backgroundCol);
@@ -231,7 +284,6 @@ main {
                 display: inline-block;
                 width: 15px;
                 height: 15px;
-                border: 3px solid red;
             }
         }
 
@@ -254,18 +306,42 @@ main {
 
         }
 
+        #canvas-size {
+            margin: 15px 0px 10px 0;
+            width: 150px;
+        }
+
+        .undo-redo_container {
+            display: flex;
+            margin: 10px 0 0 0;
+            
+            button {
+                width: 40px;
+                padding: 0px;
+                margin-right: 3px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i {
+                    font-size: 22px;
+                }
+            }
+        }
+
         #exit {
             position: absolute;
             bottom: 10px;
             left: 10px;
             cursor: pointer;
 
-            font-family: $mainFont;
+            font-family: "Montserrat SemiBold";
             font-size: 0.85rem;
             transition: 0.2s ease;
         }
         #exit:hover {
-            color: color(titlesColor);
+            color: #e1302a;
         }
     }
 }
@@ -341,4 +417,40 @@ main {
     /* Support for IE. */
     -webkit-font-feature-settings: 'liga';
             font-feature-settings: 'liga';
+  }
+
+  @keyframes titleColor {
+      0% {
+          color: #0097e6;
+      }
+      20% {
+          color: goldenrod;
+      }
+      40% {
+          color: #e1302a;
+      }
+      60% {
+          color: deeppink;
+      }
+      80% {
+          color: limegreen
+      }
+      100% {
+          color: #0097e6;
+      }
+  }
+
+  @keyframes brushAnimation {
+      0% {
+          transform: translateX(0px) rotate(140deg);
+      }
+      30% {
+          transform: translateX(-4px) rotate(125deg);
+      }
+      60% {
+          transform: translateX(-4px) rotate(125deg);
+      }
+      100% {
+          transform: translateX(0px) rotate(140deg);
+      }
   }
