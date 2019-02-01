@@ -4,7 +4,7 @@ class History {
     constructor() {
         this.redo_list = [];
         this.undo_list = [];
-
+        
         // Undo & Redo buttons
         this.undoBtn = document.querySelector("#undo");
         this.redoBtn = document.querySelector("#redo");
@@ -45,6 +45,21 @@ class History {
             }
         }
     }
+    
+    // Call undo / redo with keyboards
+    keyCapture(e) { 
+        e = e || event;
+
+        // Ctrl + Z combination
+        if(e.ctrlKey && e.keyCode === 90) {
+            this.undo(cvs, ctx);
+        }
+        
+        // Ctrl + Y combination
+        if (e.ctrlKey && e.keyCode === 89) {
+            this.redo(cvs, ctx);
+        }
+    }
 }
 
 export const history = new History();
@@ -54,4 +69,4 @@ const ctx = theCanvas.ctx;
 history.undoBtn.addEventListener("click", history.undo.bind(history, cvs, ctx));
 history.redoBtn.addEventListener("click", history.redo.bind(history, cvs, ctx));
 theCanvas.canvas.addEventListener("mousedown", () => history.saveState(cvs));
-
+document.addEventListener("keyup", history.keyCapture.bind(history));
