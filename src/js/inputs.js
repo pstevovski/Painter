@@ -52,11 +52,10 @@ inputs.colorInputs.forEach(input => input.addEventListener("change", () => {
         // Display changes
         ui.displayChanges("draw-color");
     } else if (input.id === "backgroundColor") {
-        let passedValue = JSON.stringify(input.value);
         theCanvas.ctx.fillStyle = input.value;
         theCanvas.ctx.fillRect(0, 0, theCanvas.canvas.width, theCanvas.canvas.height);
 
         // Display changes
-        ui.displayChanges("fill-color", passedValue);
+        ui.displayChanges("fill-color", input.value);
     }
 }))
