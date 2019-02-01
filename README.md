@@ -1,5 +1,5 @@
-# DrawThings
-DrawThings things on the canvas and save your paintings.
+# Painter
+Painter is a canvas painting web app, where you can draw and express your creativity, and download your painting.
 
-Created with:
-* HTML 5, SCSS, JavaScript, Gulp
+### Technologies used:
+* HTML 5, SCSS, JavaScript (ES6+), Parcel
