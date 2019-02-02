@@ -1,5 +1,5 @@
 {
-  "name": "drawgraffiti",
+  "name": "painter",
   "version": "1.0.0",
   "description": "Draw anything you'd like",
   "main": "./build/js/app.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pecko95/DrawGraffiti.git"
+    "url": "git+https://github.com/pecko95/Painter.git"
   },
   "keywords": [
     "draw",
@@ -18,9 +18,9 @@
   "author": "Petar Stevovski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pecko95/DrawGraffiti/issues"
+    "url": "https://github.com/pecko95/Painter/issues"
   },
-  "homepage": "https://github.com/pecko95/DrawGraffiti#readme",
+  "homepage": "https://github.com/pecko95/Painter#readme",
   "dependencies": {
     "parcel-bundler": "^1.11.0",
     "sass": "^1.16.1"
