@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/png" href="./favicon.png">
     <link rel="stylesheet" href="./fonts.css">
-    <title>DrawThings</title>
+    <title>Painter</title>
 </head>
 <body>
     <div class="container">
@@ -66,40 +66,68 @@
                             <input class="cap-type" type="checkbox" name="butt" id="capButt">
                         </div>
                     </div>
-                    <!-- LINE JOIN TYPE -->
-                    <div>
-                        <h4>Line Join type:</h4>
-                        <div class="cap-line_type">
-                            <label for="Round">Round:</label>
-                            <input class="line-type" type="checkbox" name="round" id="lineRound" checked>
-                        </div>
-                        <div class="cap-line_type">
-                            <label for="Bevel">Bevel:</label>
-                            <input class="line-type" type="checkbox" name="bevel" id="lineBevel">
-                        </div>
-                        <div class="cap-line_type">
-                            <label for="Miter">Miter:</label>
-                            <input class="line-type" type="checkbox" name="miter" id="lineMiter">
-                        </div>
-                    </div>
                 </div>
 
-                <div>
-                    <h4>Draw straight line:</h4>
+                
+                <!-- DRAW A STRAIGHT LINE -->
+                <div class="cap-line_type">
+                    <h4>Line:</h4>
                     <input type="checkbox" name="strLine" id="strLine">
+                </div>
+
+                <!-- ERASER -->
+                <div class="cap-line_type">
+                    <h4>Eraser: </h4>
+                    <img src="../erase.svg" width="24px" height="24px" alt="Eraser">
                 </div>
 
                 <!-- Color pallete -->
                 <div>
-                    <h4>Color: <span id="current-drawColor">#000000</span></h4>
+                    <h4 id="drawColor-title">Color: <span id="current-drawColor">#000000</span><span id="color-info"><i class="material-icons">colorize</i></span></h4>
+                    <div class="color-boxes_container" id="draw-color">
+                        <div class="color-box" data-color="#1abc9c" style="background-color: #1abc9c"></div>
+                        <div class="color-box" data-color="#2ecc71" style="background-color: #2ecc71"></div>
+                        <div class="color-box" data-color="#00a8ff" style="background-color: #00a8ff"></div>
+                        <div class="color-box" data-color="#48dbfb" style="background-color: #48dbfb"></div>
+                        <div class="color-box" data-color="#e74c3c" style="background-color: #e74c3c"></div>
+                        <div class="color-box" data-color="#c23616" style="background-color: #c23616"></div>
+                        <div class="color-box" data-color="#f1c40f" style="background-color:#f1c40f"></div>
+                        <div class="color-box" data-color="#e67e22" style="background-color: #e67e22"></div>
+                        <div class="color-box" data-color="#feca57" style="background-color: #feca57"></div>
+                        <div class="color-box" data-color="#ff9ff3" style="background-color: #ff9ff3"></div>
+                        <div class="color-box" data-color="#9b59b6" style="background-color: #9b59b6"></div>
+                        <div class="color-box" data-color="#5f27cd" style="background-color: #5f27cd"></div>
+                        <div class="color-box" data-color="#341f97" style="background-color:#341f97"></div>
+                        <div class="color-box" data-color="#ecf0f1" style="background-color: #ecf0f1"></div>
+                        <div class="color-box" data-color="#fffff" style="background-color: #ffffff"></div>
+                        <div class="color-box" data-color="#34495e" style="background-color: #34495e"></div>
+                    </div>
                     <div id="color-pallete_container">
-                        <input type="color" name="color" id="colorPalette"><span id="color-info"><i class="material-icons">colorize</i></span>
+                        <input type="color" name="color" id="colorPalette"></span>
                     </div>
                 </div>
 
                 <!-- Background color fill -->
                 <div>
                     <h4>Fill color: <span id="current-bgColor">none</span></h4>
+                    <div class="color-boxes_container" id="fill-color">
+                        <div class="color-box" data-color="#1abc9c" style="background-color: #1abc9c"></div>
+                        <div class="color-box" data-color="#2ecc71" style="background-color: #2ecc71"></div>
+                        <div class="color-box" data-color="#00a8ff" style="background-color: #00a8ff"></div>
+                        <div class="color-box" data-color="#48dbfb" style="background-color: #48dbfb"></div>
+                        <div class="color-box" data-color="#e74c3c" style="background-color: #e74c3c"></div>
+                        <div class="color-box" data-color="#c23616" style="background-color: #c23616"></div>
+                        <div class="color-box" data-color="#f1c40f" style="background-color:#f1c40f"></div>
+                        <div class="color-box" data-color="#e67e22" style="background-color: #e67e22"></div>
+                        <div class="color-box" data-color="#feca57" style="background-color: #feca57"></div>
+                        <div class="color-box" data-color="#ff9ff3" style="background-color: #ff9ff3"></div>
+                        <div class="color-box" data-color="#9b59b6" style="background-color: #9b59b6"></div>
+                        <div class="color-box" data-color="#5f27cd" style="background-color: #5f27cd"></div>
+                        <div class="color-box" data-color="#341f97" style="background-color:#341f97"></div>
+                        <div class="color-box" data-color="#ecf0f1" style="background-color: #ecf0f1"></div>
+                        <div class="color-box" data-color="#fffff" style="background-color: #ffffff"></div>
+                        <div class="color-box" data-color="#34495e" style="background-color: #34495e"></div>
+                    </div>
                     <input type="color" name="color" id="backgroundColor">
                 </div>
 
