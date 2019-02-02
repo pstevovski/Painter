@@ -100,7 +100,6 @@ class Ui {
         theCanvas.canvas.width = inputs.widthInput.value;
         theCanvas.canvas.height = inputs.heightInput.value;
         theCanvas.ctx.lineCap = "round";
-        theCanvas.ctx.lineJoin = "miter";
         theCanvas.ctx.lineWidth = 20;
         inputs.capWidth.value = theCanvas.ctx.lineWidth;
         document.querySelector("#current-capSize").textContent =`${theCanvas.ctx.lineWidth}px`;
@@ -112,7 +111,6 @@ class Ui {
         // Reset the checkboxes to default ones
         const checkboxes = [...this.checkboxes];
         checkboxes.forEach(cap => cap.checked = false);
-        this.lineTypes[0].checked = true;
         this.capTypes[0].checked = true;
 
         this.displayChanges('all');
@@ -146,24 +144,6 @@ class Ui {
 
                     // Use the clicked box name as a property for the cap type
                     theCanvas.ctx.lineCap = box.name;
-                }
-            })
-        } else if (name === "line-type") {
-            // Convert checkboxes node list to an array
-            boxes = [...this.lineTypes];
-
-            // Filter the checkboxes
-            boxes.filter(box => {
-                if(box.id !== id) {
-                    // Uncheck all the boxes that DON'T match the ID of the clicked box.
-                    box.checked = false;
-                } else if(box.id === id) {
-                    // If user clicks on the same box that is already checked,
-                    // it can not be un-checked
-                    box.checked = true;
-
-                    // Use the clicked box name as a property for the line type
-                    theCanvas.ctx.lineJoin = box.name;
                 }
             })
         } else {

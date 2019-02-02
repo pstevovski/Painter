@@ -12,7 +12,6 @@ class Canvas {
 
         // Canvas property
         this.ctx.lineCap = "round";
-        this.ctx.lineJoin = "miter";
         this.ctx.lineWidth = 20;
         this.ctx.strokeStyle = "#000000";
 

@@ -4,6 +4,7 @@ import { theCanvas } from './canvas'
 class Inputs {
     constructor() {
         this.colorInputs = document.querySelectorAll(`input[type="color"]`);
+        this.colorBoxes = document.querySelectorAll(".color-box");
         this.widthInput = document.querySelector("#width-input");
         this.heightInput = document.querySelector("#height-input");
         this.capWidth = document.querySelector("#capWidth");
@@ -59,3 +60,20 @@ inputs.colorInputs.forEach(input => input.addEventListener("change", () => {
         ui.displayChanges("fill-color", input.value);
     }
 }))
+
+inputs.colorBoxes.forEach(box => box.addEventListener("click", e => {
+    let parentID = e.target.parentElement.id;
+    if(parentID === "draw-color") {
+        theCanvas.ctx.strokeStyle = box.dataset.color;
+
+        // Update the UI with the proper color name
+        ui.displayChanges("draw-color");
+    } else if (parentID === "fill-color") {
+        theCanvas.ctx.fillStyle = box.dataset.color;
+        theCanvas.ctx.fillRect(0, 0, theCanvas.canvas.width, theCanvas.canvas.height);
+        
+        // Update the UI with the proper color name
+        ui.displayChanges("fill-color", box.dataset.color);
+    }
+    // console.log(e.target.parentElement.id);
+}));

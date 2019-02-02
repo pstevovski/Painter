@@ -58,6 +58,7 @@ theCanvas.canvas.addEventListener("click", e => {
     let hex = "#" + ("000000" + rgbToHex(pixelData[0], pixelData[1], pixelData[2])).slice(-6);
     document.querySelector("#colorPalette").value = hex;
     theCanvas.ctx.strokeStyle = hex;
+    document.querySelector("#current-drawColor").textContent = hex;
     // Set the color picker to false after user gets the HEX value for the color
     pickingColor = false;
 },false);
