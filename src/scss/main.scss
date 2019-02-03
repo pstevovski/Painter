@@ -63,6 +63,10 @@ body {
         font-family: $mainFont;
         content: "Custom color"
     }
+
+    #colorPalette:hover::before, #backgroundColor:hover::before {
+        color: #e1302a;
+    }
     input[type='color']::-webkit-color-swatch-wrapper {
         opacity: 0;
     }
@@ -190,10 +194,11 @@ main {
     .canvas-container {
         grid-area: canvas;
 
+        position: relative;
+        overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        // background-color: red;
 
         #cap-pointer {
             display: none;
@@ -209,6 +214,36 @@ main {
             background-repeat: center center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+
+        // NOTIFICATIONS
+        .notification {
+            // background-color: red;
+            display: block;
+            width: 250px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            font-family: $textFont;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: 0.5s ease;
+
+            p {
+                color: color(titlesColor);
+            }
+        }
+        .notification.notificationActive {
+            transform: translate(-50%, 60px);
         }
     }
 
@@ -310,6 +345,10 @@ main {
             }
         }
 
+        .eraser {
+            align-items: center;
+        }
+
         #clear-all_container {
             display: flex;
             justify-content:flex-start;
@@ -390,7 +429,6 @@ main {
         }
     }
 }
-
 
 // ABOUT MENU
 .about-menu {
