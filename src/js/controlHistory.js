@@ -1,4 +1,5 @@
-import { theCanvas } from './canvas'; 
+import { theCanvas } from './canvas';
+import { ui } from './ui';
 
 class History { 
     constructor() {
@@ -23,11 +24,13 @@ class History {
     // Undo action
     undo(canvas, ctx) {
         this.restoreState(canvas, ctx, this.undo_list, this.redo_list);
+        ui.displayNotification("Undo");
     }
 
     // Redo action
     redo(canvas, ctx) {
       this.restoreState(canvas, ctx, this.redo_list, this.undo_list);
+      ui.displayNotification("Redo");        
     }
 
     // Restore the state

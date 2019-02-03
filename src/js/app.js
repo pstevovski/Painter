@@ -11,8 +11,18 @@ import '../scss/main';
 // Color picker
 const colorInfo = document.querySelector("#color-info");
 let pickingColor = false;
-colorInfo.addEventListener("click", () => {
+colorInfo.addEventListener("click", function() {
     pickingColor = !pickingColor;
+
+    // Display notification
+    
+    if(pickingColor) {
+        this.style.color = "#444"
+        ui.displayNotification("Enabled color picker");
+    } else {
+        this.style.color = "#0097e6"
+        ui.displayNotification("Disabled color picker");
+    }
 })
 
 // Get the mouse position in the canvas
@@ -55,10 +65,19 @@ theCanvas.canvas.addEventListener("click", e => {
     if((pixelData[0] == 0) && (pixelData[1] == 0) && (pixelData[2] == 0) && (pixelData[3] == 0)){
         coord += " (Transparent color detected, cannot be converted to HEX)";
     }
+
+    // Update the UI with the HEX color value
     let hex = "#" + ("000000" + rgbToHex(pixelData[0], pixelData[1], pixelData[2])).slice(-6);
     document.querySelector("#colorPalette").value = hex;
     theCanvas.ctx.strokeStyle = hex;
     document.querySelector("#current-drawColor").textContent = hex;
+
+    // Reset the color picker color to default
+    colorInfo.style.color = "#0097e6";
+
+    // Display a notification for the color picker
+    ui.displayNotification("Disabled color picker");
+
     // Set the color picker to false after user gets the HEX value for the color
     pickingColor = false;
 },false);

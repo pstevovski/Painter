@@ -7,7 +7,11 @@ class Ui {
         this.newProjectWindow = document.querySelector(".new-project_window");
         this.aboutMenu = document.querySelector(".about-menu");
         this.drawingField = document.querySelector("#main");
+        this.notification = document.querySelector(".notification");
+
         this.isCanvasCreated = false;
+        this.eraserToggled = false;
+        this.prevColor = null;
 
         // Buttons
         this.newProjectBtn = document.querySelector("#new-project");
@@ -17,6 +21,7 @@ class Ui {
         this.save = document.querySelector("#saveDrawing");
         this.exit = document.querySelector("#exit");
         this.closeAbout = document.querySelector("#close-about");
+        this.eraser = document.querySelector("#eraser");
 
         // Inputs
         this.holdingSlider = false;
@@ -182,6 +187,15 @@ class Ui {
             fillColorText.textContent = `none`;
         }
     }
+
+    displayNotification(text) {
+        // Display notification
+        document.querySelector("#notification-text").textContent = text;
+        ui.notification.classList.add("notificationActive");
+        setTimeout(() => {
+            ui.notification.classList.remove("notificationActive");
+        }, 1000);
+    }
 }
 
 export const ui = new Ui();
@@ -205,6 +219,26 @@ ui.checkboxes.forEach(box => box.addEventListener("click", () => {
     const name = box.className;
     ui.filterBoxes(id, name);
 }))
+
+// Toggle eraser on and off
+ui.eraser.addEventListener("click", () => {    
+    ui.eraserToggled = !ui.eraserToggled;
+    
+    if(ui.eraserToggled) {
+        // We save the value of the previously used color before using the eraser
+        ui.prevColor = theCanvas.ctx.strokeStyle;
+
+        // We set the stroke color to the default canvas color
+        theCanvas.ctx.strokeStyle = "#fff";
+
+        // Display a notification
+        ui.displayNotification("Enabled Eraser");
+    } else {
+        // We restore the stroke color to the saved value
+        theCanvas.ctx.strokeStyle = ui.prevColor;
+        ui.displayNotification("Disabled Eraser");
+    }
+})
 
 // Toggle between main menu and new project window that leads towrads the canvas
 ui.newProjectBtn.addEventListener("click", ui.displayNewProject.bind(ui, 'display'));
