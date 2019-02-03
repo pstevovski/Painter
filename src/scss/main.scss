@@ -45,26 +45,23 @@ body {
     }
 
     input[type='color'] {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: block;
+        text-align: left;
         background: none;
         border: none;
-        width: 32px;
-        height: 32px;
-        font-size: 32px;
-        margin-left: 5px;
+        width: 110px;
+        font-size: 14px;
         cursor: pointer;
         outline: none;
     }
     #colorPalette::before {
-        font-family: "Material Icons";
-        content: '\e40a';
+        font-family: $mainFont;
+        content: "Custom color";
     }
 
     #backgroundColor::before {
-        font-family: 'Material Icons';
-        content: '\e23a';
+        font-family: $mainFont;
+        content: "Custom color"
     }
     input[type='color']::-webkit-color-swatch-wrapper {
         opacity: 0;
@@ -246,6 +243,25 @@ main {
             font-size: 0.9rem;
         }
 
+        #drawColor-title {
+            display: flex;
+            align-items: center;
+            // justify-content: space-between;
+        
+            #current-drawColor {
+                color: #555;
+            }
+
+            #color-info {
+                margin-left: 65px;
+                cursor: pointer;
+            }
+        }
+
+        #current-bgColor { 
+            color: #555;
+        }
+
         // Download drawing
         #saveDrawing {
             display: inline-block;
@@ -285,6 +301,13 @@ main {
                 width: 15px;
                 height: 15px;
             }
+
+            img {
+                display: inline-block;
+                padding: 0;
+                margin: 0;
+                margin-right: -5px;
+            }
         }
 
         #clear-all_container {
@@ -313,6 +336,8 @@ main {
 
         .undo-redo_container {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin: 10px 0 0 0;
             
             button {
@@ -327,6 +352,26 @@ main {
                 i {
                     font-size: 22px;
                 }
+            }
+        }
+
+        // COLOR BOXES
+        .color-boxes_container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+
+            width: 202px;
+            height: 52px;
+            border: 1px solid rgba(0,0,0,0.2);
+
+            .color-box {
+                width: 25px;
+                height: 25px;
+                margin: 0;
+                padding: 0;
+                cursor: pointer;
             }
         }
 
