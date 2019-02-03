@@ -76,9 +76,9 @@
                 </div>
 
                 <!-- ERASER -->
-                <div class="cap-line_type">
+                <div class="cap-line_type eraser">
                     <h4>Eraser: </h4>
-                    <img src="../erase.svg" width="24px" height="24px" alt="Eraser">
+                    <img id="eraser" src="../erase.svg" width="28px" height="28px" alt="Eraser">
                 </div>
 
                 <!-- Color pallete -->
@@ -133,6 +133,7 @@
 
                 <!-- UNDO AND REDO -->
                 <div class="undo-redo_container">
+                    <h4>Undo / Redo: </h4>
                     <button id="undo" title="Ctrl-Z"><i class="material-icons">undo</i></button>
                     <button id="redo" title="Ctrl-Y"><i class="material-icons">redo</i></button>
                 </div>
@@ -145,14 +146,17 @@
 
                 <!-- SAVE DRAWING -->
                 <a id="saveDrawing" title="Download Image"><i class="material-icons">get_app</i></a>
-
-
                 
                 <!-- EXIT -->
                 <span id="exit">exit</span>
             </div>
 
             <div class="canvas-container">
+                <!-- NOTIFICATION -->
+                <div class="notification">
+                    <p id="notification-text"></p>
+                </div>
+                
                 <canvas id="canvas" width="800px" height="500px"></canvas>
             </div>
         </main>
