@@ -56,21 +56,31 @@
                     <div>
                         <h4>Cap width: <span id="current-capSize">20px</span></h4>
                         <input type="range" name="capWidth" id="capWidth" min="1" max="100" step="1" value="20">
+                        <span id="capWidth-display"></span>
                     </div>
                     <!-- CAP TYPE -->
                     <div>
                         <h4>Cap type: </h4>
                         <div class="cap-line_type">
                             <label for="capRound">Round:</label>
-                            <input class="cap-type" type="checkbox" name="round" id="capRound" checked>
+                            <label class="switch">
+                                <input class="cap-type" type="checkbox" name="round" id="capRound" checked>
+                                <span class="slider round"></span>
+                            </label>
                         </div>
                         <div class="cap-line_type">
                             <label for="Square">Square:</label>
-                            <input class="cap-type" type="checkbox" name="square" id="capSquare">
+                            <label class="switch">
+                                <input class="cap-type" type="checkbox" name="square" id="capSquare">
+                                <span class="slider round"></span>
+                            </label>
                         </div>
                         <div class="cap-line_type">
                             <label for="Butt">Butt:</label>
-                            <input class="cap-type" type="checkbox" name="butt" id="capButt">
+                            <label class="switch">
+                                <input class="cap-type" type="checkbox" name="butt" id="capButt">
+                                <span class="slider round"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -79,7 +89,10 @@
                 <!-- DRAW A STRAIGHT LINE -->
                 <div class="cap-line_type">
                     <h4>Line:</h4>
-                    <input type="checkbox" name="strLine" id="strLine">
+                    <label class="switch">
+                        <input type="checkbox" name="strLine" id="strLine">
+                            <span class="slider round"></span>
+                    </label>
                 </div>
 
                 <!-- ERASER -->
