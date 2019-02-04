@@ -17,6 +17,11 @@ class Inputs {
         // Change cap size using the slider
         if(ui.holdingSlider) {
             theCanvas.ctx.lineWidth = e.target.value;
+            const capDisplay = document.querySelector("#capWidth-display");
+            capDisplay.style.width = `${e.target.value}px`;
+            capDisplay.style.height = `${theCanvas.ctx.lineWidth}px`;
+            capDisplay.style.backgroundColor = theCanvas.ctx.strokeStyle;
+            console.log(capDisplay);
         }
 
         // If user presses [, decrease size. If user presses ], increase cap size
@@ -36,7 +41,11 @@ export const inputs = new Inputs();
 
 // Input field
 inputs.capWidth.addEventListener("mousedown", () => ui.holdingSlider = true)
-inputs.capWidth.addEventListener("mouseup", () => ui.holdingSlider = false)
+inputs.capWidth.addEventListener("mouseup", () => {
+    ui.holdingSlider = false
+    document.querySelector("#capWidth-display").style.width = "0px";
+    document.querySelector("#capWidth-display").style.height = "0px";
+})
 inputs.capWidth.addEventListener("mousemove", inputs.changeCapSize.bind(inputs));
 inputs.capWidth.addEventListener("click", e => {
     theCanvas.ctx.lineWidth = e.target.value;
