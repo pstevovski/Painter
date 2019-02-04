@@ -43,6 +43,13 @@
         <!-- Canvas to draw on -->
         <main id="main">  
             <div class="controls">
+                <!-- BURGER MENU -->
+                <div class="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
                 <!-- Cap properties -->
                 <div class="cap-props">
                     <!-- CAP WIDTH -->
@@ -138,17 +145,20 @@
                     <button id="redo" title="Ctrl-Y"><i class="material-icons">redo</i></button>
                 </div>
 
-                <!-- CHANGE CANVAS WIDTH / HEIGHT -->
-                <button id="canvas-size">Change canvas size:</button>
-
                 <!-- CLEAR CANVAS -->
                 <h4 id="clear-all_container">Clear all: <span id="clearCanvas"><i class="material-icons">delete_forever</i></span></h4>
 
+                <!-- CHANGE CANVAS WIDTH / HEIGHT -->
+                <button id="canvas-size">Change canvas size:</button>
+
                 <!-- SAVE DRAWING -->
-                <a id="saveDrawing" title="Download Image"><i class="material-icons">get_app</i></a>
+                <a id="saveDrawing" title="Download Image">DOWNLOAD</a>
                 
-                <!-- EXIT -->
-                <span id="exit">exit</span>
+                <div class="controls-bottom">
+                    <!-- EXIT -->
+                    <span id="exit">exit</span>
+                    <span id="info"><i class="material-icons">info</i></span>
+                </div>
             </div>
 
             <div class="canvas-container">
