@@ -81,3 +81,16 @@ theCanvas.canvas.addEventListener("click", e => {
     // Set the color picker to false after user gets the HEX value for the color
     pickingColor = false;
 },false);
+
+// Burger menu
+const burger = document.querySelector(".burger-menu");
+burger.addEventListener("click", () => {
+    // Toggle active class on the burger and controls container
+    burger.classList.toggle("active");
+    document.querySelector(".controls").classList.toggle("controlsActive");
+
+    // Toggle active class on the main section - container for canvas and controls section
+    setTimeout(() => {
+        document.querySelector("#main").classList.toggle("mainDisplay");
+    }, 50);
+})

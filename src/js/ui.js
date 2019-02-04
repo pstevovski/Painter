@@ -157,6 +157,11 @@ class Ui {
             boxes.filter(box => {
                 if(box.id === "strLine") {
                     this.strLineChecked = !this.strLineChecked;
+                    if(this.strLineChecked) {
+                        this.displayNotification("Enabled straight line");
+                    } else {
+                        this.displayNotification("Disabled straight line");  
+                    }
                 }
             });
         }
