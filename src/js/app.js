@@ -94,3 +94,14 @@ burger.addEventListener("click", () => {
         document.querySelector("#main").classList.toggle("mainDisplay");
     }, 50);
 })
+
+// Info box
+const infoBtn = document.querySelector("#info");
+const infoBox = document.querySelector(".info-box");
+const closeInfoBtn = document.querySelector("#close-info");
+infoBtn.addEventListener("click", () => {
+    infoBox.style.display = "flex";
+})
+closeInfoBtn.addEventListener("click", () => {
+    infoBox.style.display = "none";
+})
